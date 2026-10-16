@@ -1,0 +1,53 @@
+---
+/**
+ * /go/<slug> → link de afiliado.
+ * Monta o tid (Tracking ID da ClickBank) a partir de:
+ *   1. ?tid= na própria URL ou na primeira visita
+ *   2. utm_source + utm_campaign + utm_content da primeira visita
+ * O tid fica só com letras e números (máx. 100), formato aceito pela ClickBank.
+ */
+import { products } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const fallback = product.offerUrl.replace('{tid}', 'direct');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Opening the official {product.name} website…</title>
+    <noscript><meta http-equiv="refresh" content={`0; url=${fallback}`} /></noscript>
+    <script is:inline define:vars={{ offerUrl: product.offerUrl, fallback }}>
+      (function () {
+        var url = fallback;
+        try {
+          var here = new URLSearchParams(location.search);
+          var saved = JSON.parse(sessionStorage.getItem('thn_attr') || '{}');
+          var pick = function (k) { return here.get(k) || saved[k] || ''; };
+          var tid = pick('tid');
+          if (!tid) {
+            var src = pick('utm_source');
+            tid = [src === 'google' ? 'g' : src, pick('utm_campaign'), pick('utm_content')]
+              .filter(Boolean).join('x');
+          }
+          tid = String(tid).replace(/[^A-Za-z0-9]/g, '').slice(0, 100) || 'direct';
+          url = offerUrl.replace('{tid}', encodeURIComponent(tid));
+        } catch (e) { /* usa o fallback */ }
+        location.replace(url);
+      })();
+    </script>
+    <style>
+      body { font-family: system-ui, sans-serif; color: #14303a; background: #fafbf8; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1rem; text-align: center; }
+      a { color: #22766c; }
+    </style>
+  </head>
+  <body>
+    <p>Taking you to the official {product.name} website. <a href={fallback} rel="sponsored nofollow">Continue if nothing happens</a>.</p>
+  </body>
+</html>

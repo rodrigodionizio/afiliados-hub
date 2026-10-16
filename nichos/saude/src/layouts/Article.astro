@@ -1,0 +1,48 @@
+---
+import Base from './Base.astro';
+import { site } from '../site.config';
+
+interface Props {
+  title: string;
+  description: string;
+  dek: string;
+  updated: string; // ISO date
+  readingMinutes: number;
+}
+const { title, description, dek, updated, readingMinutes } = Astro.props;
+const updatedLabel = new Date(updated + 'T12:00:00Z').toLocaleDateString('en-US', {
+  month: 'long', day: 'numeric', year: 'numeric',
+});
+---
+<Base title={title} description={description}>
+  <article class="wrap article">
+    <header class="article-head">
+      <p class="disclosure ui">
+        Reader-supported: if you buy through our links we may earn a commission, at no extra cost to you.{' '}
+        <a href="/affiliate-disclosure">Learn more</a>.
+      </p>
+      <h1>{title}</h1>
+      <p class="dek">{dek}</p>
+      <p class="byline ui">
+        By {site.name}'s editorial team. Updated <time datetime={updated}>{updatedLabel}</time>,
+        about {readingMinutes} minutes to read.
+      </p>
+    </header>
+    <div class="body">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article { padding-top: 2rem; }
+  .article-head { max-width: 46rem; margin-bottom: 2rem; }
+  .disclosure {
+    font-size: 0.85rem; color: var(--graphite); margin: 0 0 1.5rem;
+    padding-bottom: 0.75rem; border-bottom: 1px dashed var(--rule);
+  }
+  .dek { font-size: 1.3rem; line-height: 1.5; color: var(--graphite); margin-bottom: 1.25rem; }
+  .byline { font-size: 0.95rem; color: var(--graphite); margin: 0; }
+  .body { max-width: var(--measure); }
+  .body::after { content: ''; display: block; clear: both; }
+</style>

@@ -1,0 +1,12 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../site.config';
+---
+<Page title="About us" description={`Who writes ${site.name} and how the site is funded.`}>
+  <p>{site.name} is a small, independent publication that writes plain-spoken notes about everyday health products for adults 35 and older.</p>
+  <p>We are not doctors or dentists, and we don't pretend to be. What we do is read the product label, the official sales page, the fine print and the published research, then explain it in everyday language: what the product is, what it costs, what the evidence does and does not show, and who should talk to a professional first.</p>
+  <h2>How we are funded</h2>
+  <p>The site is reader-supported. Some links on this site are affiliate links, which means we may earn a commission if you buy through them, at no extra cost to you. That never changes what we write; see our <a href="/affiliate-disclosure">affiliate disclosure</a> and <a href="/editorial-policy">editorial policy</a>.</p>
+  <h2>Get in touch</h2>
+  <p>Corrections, questions and suggestions are welcome. <a href="/contact">Contact us</a>.</p>
+</Page>

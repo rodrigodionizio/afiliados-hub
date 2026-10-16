@@ -1,0 +1,247 @@
+---
+import Article from '../../layouts/Article.astro';
+import OfferButton from '../../components/OfferButton.astro';
+import MarginNote from '../../components/MarginNote.astro';
+
+const slug = 'prodentim';
+const faqs = [
+  {
+    q: 'What is ProDentim?',
+    a: 'ProDentim is a chewable oral probiotic supplement. Each tablet combines probiotic strains with inulin, malic acid, tricalcium phosphate and peppermint. It is sold online through its official website.',
+  },
+  {
+    q: 'How do you take it?',
+    a: 'The company recommends slowly chewing one tablet each morning and letting it dissolve in your mouth. It is meant to be taken alongside, not instead of, your usual brushing and flossing.',
+  },
+  {
+    q: 'Does it replace toothpaste, floss or dental visits?',
+    a: 'No. No supplement replaces daily brushing, flossing and regular checkups. If you have bleeding gums, pain, loose teeth or persistent bad breath, see a dentist first.',
+  },
+  {
+    q: 'Is there a money-back guarantee?',
+    a: 'At the time of writing, the official website offers a 60-day money-back guarantee on every order. Check the current terms on the official site before you buy.',
+  },
+  {
+    q: 'Where can I buy it?',
+    a: 'Only through the official website. The company does not list it on Amazon or other marketplaces, so copies sold elsewhere may not be genuine and are not covered by the guarantee.',
+  },
+  {
+    q: 'Who should check with a doctor first?',
+    a: 'Anyone who is pregnant or nursing, has a weakened immune system, takes prescription medication or is managing a medical condition should talk to a doctor or dentist before taking any probiotic supplement.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Article
+  title="The mouth has a microbiome too. Here's what an oral probiotic like ProDentim is designed to do"
+  description="A plain-spoken look at the oral microbiome, what research says about oral probiotics, and what is inside ProDentim, including price, guarantee and who it is not for."
+  dek="Brushing and flossing still matter most. But researchers increasingly look at the mouth as an ecosystem, and that has opened the door to a new kind of supplement. We read the research and the label so you don't have to."
+  updated="2026-10-16"
+  readingMinutes={7}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <p>
+    If you are over 35, you have probably heard some version of this at a dental checkup: you brush, you floss,
+    and still your gums are a little puffy or your breath is not what it used to be. The usual advice is to brush
+    better. That advice is right. It is also, researchers now suggest, not the whole picture.
+  </p>
+
+  <h2>Your mouth is an ecosystem, not a battlefield</h2>
+
+  <MarginNote title="In one sentence">
+    <p>The goal of an oral probiotic is to support the balance of bacteria in your mouth, not to sterilize it.</p>
+  </MarginNote>
+
+  <p>
+    Your mouth is home to hundreds of species of bacteria. For decades, dental care focused on removing them.
+    More recent work treats the mouth as a community where <mark>the balance between helpful and harmful
+    bacteria matters as much as the total amount</mark>. A 2021 news feature in <em>Nature</em> described how
+    oral microbiome research is challenging some long-held assumptions in dentistry.<sup><a href="#ref-1">1</a></sup>
+  </p>
+  <p>
+    That shift is why "oral probiotics" exist: supplements that deliver beneficial bacteria directly to the mouth,
+    usually as a lozenge or chewable that dissolves slowly instead of being swallowed.
+  </p>
+
+  <h2>What the research says about oral probiotics</h2>
+  <p>
+    The honest answer is that the research is promising but still developing. A 2021 review in
+    <em>Frontiers in Dental Medicine</em> looked at probiotics used alongside regular care for gum problems and
+    found encouraging results in several trials, while noting that results vary by strain, dose and study
+    design.<sup><a href="#ref-2">2</a></sup> A clinical trial published in the <em>Journal of Clinical
+    Periodontology</em> found benefits when a <em>Bifidobacterium lactis</em> strain was added to professional
+    gum treatment.<sup><a href="#ref-3">3</a></sup>
+  </p>
+
+  <MarginNote title="Worth knowing">
+    <p>Probiotic effects are strain-specific. A study on one strain does not prove that a different strain, or a full product, works the same way.</p>
+  </MarginNote>
+
+  <p>
+    Two things are worth keeping in mind. First, most of these studies use probiotics <mark>in addition to</mark>
+    brushing, flossing and dental care, not instead of them. Second, the strain matters: the trial above used a
+    strain called HN019, which is not the same <em>B. lactis</em> strain found in ProDentim.
+  </p>
+
+  <h2>What ProDentim is</h2>
+  <p>
+    ProDentim is a chewable oral probiotic sold through its official website. The company says each tablet
+    contains 3.5 billion probiotic cultures, built around three strains, plus a small blend of supporting
+    ingredients.
+  </p>
+
+  <h3>The probiotic strains</h3>
+  <ul>
+    <li><strong>Lactobacillus paracasei</strong>, which the company includes to support gum health.</li>
+    <li><strong>Bifidobacterium lactis BL-04</strong>, included to support a balanced oral environment and normal immune function.</li>
+    <li><strong>Lactobacillus reuteri</strong>, one of the more widely studied probiotic species, included to support a healthy mouth.</li>
+  </ul>
+
+  <h3>The supporting ingredients</h3>
+  <ul>
+    <li><strong>Inulin</strong>, a plant fiber that serves as food for beneficial bacteria.</li>
+    <li><strong>Malic acid</strong>, a fruit acid found in strawberries.</li>
+    <li><strong>Tricalcium phosphate</strong>, a common source of calcium and phosphate.</li>
+    <li><strong>Peppermint</strong>, for flavor and a fresh-feeling mouth.</li>
+  </ul>
+
+  <p>
+    The company describes the formula as non-GMO, gluten-free and free of stimulants. You chew one tablet in the
+    morning and let it dissolve, which gives the cultures time in your mouth before you swallow.
+  </p>
+
+  <div class="cta-block">
+    <p class="cta-lead ui">Want to see the full ingredient list, current pricing and the guarantee?</p>
+    <OfferButton slug={slug} label="Check the official ProDentim website" position="mid" />
+  </div>
+
+  <h2>Price and guarantee</h2>
+  <p>
+    ProDentim is sold in bundles, and the price per bottle drops as you buy more. These were the prices on the
+    official website when we last checked; they can change, so confirm on the site.
+  </p>
+
+  <div class="table-wrap">
+    <table class="ui">
+      <caption>Bundle prices on the official website, checked October 2026</caption>
+      <thead>
+        <tr><th scope="col">Bundle</th><th scope="col">Price per bottle</th><th scope="col">US shipping</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2 bottles</td><td>$79</td><td>$9.99</td></tr>
+        <tr><td>3 bottles</td><td>$69</td><td>Free</td></tr>
+        <tr><td>6 bottles, with digital bonus guides</td><td>$49</td><td>Free</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Every order is covered by a <mark>60-day money-back guarantee</mark>, according to the official site. Orders are
+    processed by ClickBank, an established online retailer for digital and physical products.
+  </p>
+
+  <h2>Our take: pros and cons</h2>
+  <div class="proscons">
+    <div>
+      <h3>What we like</h3>
+      <ul>
+        <li>Built on a real and growing area of research.</li>
+        <li>Chewable format that keeps cultures in the mouth.</li>
+        <li>Easy routine: one tablet a day.</li>
+        <li>60-day money-back guarantee.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What to keep in mind</h3>
+      <ul>
+        <li>No published clinical trial on the finished product itself.</li>
+        <li>Not cheap if you buy the smaller bundles.</li>
+        <li>Only sold on the official website.</li>
+        <li>Results vary, and it does not replace dental care.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Who it may suit, and who should talk to a doctor first</h2>
+  <p>
+    ProDentim may appeal to adults who already keep a good brushing and flossing routine and want to add
+    something that supports the balance of bacteria in their mouth. It is a daily supplement, not a quick fix.
+  </p>
+  <p>
+    Talk to your doctor or dentist before trying it if you are pregnant or nursing, have a weakened immune
+    system, take prescription medication or are managing a health condition. And if you have pain, bleeding
+    gums or loose teeth, <mark>book a dental visit first</mark>; those are signs that need professional care.
+  </p>
+
+  <h2>The bottom line</h2>
+  <p>
+    The idea behind ProDentim is sound: support the good bacteria in your mouth instead of only scrubbing at
+    the bad. The science on oral probiotics is encouraging but still young, and the product itself has not been
+    tested in a published trial. If you want to try it, the 60-day guarantee lowers the risk, and buying from the
+    official website is the only way to be sure you get the genuine product.
+  </p>
+
+  <div class="cta-block final">
+    <OfferButton slug={slug} label="See today's price on the official website" position="bottom" />
+    <p class="cta-small ui">You'll leave our site and go to the official ProDentim page.</p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq ui">
+    {faqs.map((f) => (
+      <details>
+        <summary>{f.q}</summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </div>
+
+  <h2>Sources</h2>
+  <ol class="refs ui">
+    <li id="ref-1">Campbell K. Oral microbiome findings challenge dentistry dogma. <em>Nature</em>, 2021. <a href="https://doi.org/10.1038/d41586-021-02920-w" rel="noopener">doi.org/10.1038/d41586-021-02920-w</a></li>
+    <li id="ref-2">Schlagenhauf U, Jockel-Schneider Y. Probiotics in the management of gingivitis and periodontitis: a review. <em>Frontiers in Dental Medicine</em>, 2021. <a href="https://doi.org/10.3389/fdmed.2021.708666" rel="noopener">doi.org/10.3389/fdmed.2021.708666</a></li>
+    <li id="ref-3">Invernici MM, et al. Effects of Bifidobacterium probiotic on the treatment of chronic periodontitis: a randomized clinical trial. <em>Journal of Clinical Periodontology</em>, 2018;45(10):1198–1210. <a href="https://doi.org/10.1111/jcpe.12995" rel="noopener">doi.org/10.1111/jcpe.12995</a></li>
+  </ol>
+</Article>
+
+<style>
+  sup a { text-decoration: none; font-family: var(--sans); font-size: 0.75em; padding: 0 0.1em; }
+
+  .cta-block {
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0.6rem;
+  }
+  .cta-lead { margin: 0 0 1rem; font-size: 1rem; }
+  .cta-block.final { text-align: center; }
+  .cta-small { margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--graphite); }
+
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.98rem; background: var(--paper); }
+  caption { text-align: left; font-size: 0.85rem; color: var(--graphite); padding-bottom: 0.5rem; }
+  th, td { text-align: left; padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 700; background: var(--mint); }
+
+  .proscons { display: grid; gap: 0 2rem; }
+  .proscons h3 { margin-top: 1rem; }
+  @media (min-width: 40rem) { .proscons { grid-template-columns: 1fr 1fr; } }
+
+  .faq details { border-bottom: 1px solid var(--rule); padding: 0.9rem 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; }
+  .faq details p { margin: 0.6rem 0 0; color: var(--graphite); line-height: 1.6; }
+
+  .refs { font-size: 0.9rem; line-height: 1.55; color: var(--graphite); padding-left: 1.25rem; }
+  .refs a { word-break: break-word; }
+</style>

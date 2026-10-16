@@ -1,0 +1,19 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../site.config';
+---
+<Page title="Terms of use" description={`The terms for using ${site.name}.`} updated="October 16, 2026">
+  <p>By using {site.name}, you agree to these terms.</p>
+  <h2>Information only</h2>
+  <p>Content on this site is provided for general information. It is not professional advice. See our <a href="/medical-disclaimer">medical disclaimer</a>.</p>
+  <h2>Accuracy</h2>
+  <p>We work to keep articles accurate and current, but prices, ingredients and terms are set by third parties and can change without notice. Always confirm details on the official product website before you buy.</p>
+  <h2>Third-party links</h2>
+  <p>This site links to websites we don't control. We are not responsible for their content, products, orders or policies. Some links are affiliate links; see our <a href="/affiliate-disclosure">affiliate disclosure</a>.</p>
+  <h2>Content ownership</h2>
+  <p>Articles and design on this site belong to {site.name}. Product names and trademarks belong to their respective owners and are used only to identify the products we write about. We are not affiliated with, endorsed by or the owner of any product brand mentioned.</p>
+  <h2>Limitation of liability</h2>
+  <p>To the extent permitted by law, {site.name} is not liable for any loss or damage arising from your use of this site or from products purchased from third parties.</p>
+  <h2>Contact</h2>
+  <p>Questions about these terms: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+</Page>

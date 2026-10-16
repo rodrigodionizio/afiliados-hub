@@ -1,0 +1,24 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../site.config';
+---
+<Page title="Privacy policy" description={`How ${site.name} handles visitor data.`} updated="October 16, 2026">
+  <p>This policy explains what information {site.name} collects when you visit and how it is used.</p>
+  <h2>Information we collect</h2>
+  <p>We don't ask you to create an account and we don't collect your name, address or payment details. We collect limited, anonymous usage data through analytics and advertising tools:</p>
+  <ul>
+    <li><strong>Analytics.</strong> We use Google Analytics and Vercel Web Analytics to understand which pages are read, how visitors arrive (for example, from a search or an ad) and which links are clicked.</li>
+    <li><strong>Advertising measurement.</strong> We use Google Ads conversion tracking to measure whether our ads lead visitors to click through to a product website. This may use cookies or similar technologies set by Google.</li>
+    <li><strong>Campaign parameters.</strong> If you arrive from an ad, we may temporarily store the campaign information in your browser session and pass a short tracking code to the retailer so we can tell which ads lead to sales. This code does not identify you personally.</li>
+  </ul>
+  <h2>Third-party websites</h2>
+  <p>When you click a link to a product, you leave our site. Purchases are handled by the product's retailer (for example, ClickBank), whose own privacy policy applies to the information you give them.</p>
+  <h2>Your choices</h2>
+  <p>You can block or delete cookies in your browser settings, and you can opt out of Google Analytics with the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google Analytics opt-out add-on</a>. You can manage Google ad personalization at <a href="https://adssettings.google.com" rel="noopener">adssettings.google.com</a>.</p>
+  <h2>US state privacy rights</h2>
+  <p>Depending on where you live, including California, you may have the right to know what personal information is collected about you, to request deletion and to opt out of the sale or sharing of personal information. We do not sell personal information. To make a request, contact us at <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+  <h2>Children</h2>
+  <p>This site is intended for adults and is not directed to children under 13. We do not knowingly collect information from children.</p>
+  <h2>Changes</h2>
+  <p>We may update this policy from time to time. The date at the top shows when it last changed.</p>
+</Page>

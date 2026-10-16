@@ -1,0 +1,37 @@
+---
+/**
+ * Scripts de medição.
+ * - GA4 e Google Ads só carregam se os IDs existirem nas variáveis de ambiente.
+ * - Vercel Web Analytics funciona quando ativado no painel do projeto.
+ * - Guarda UTMs / gclid da primeira visita (sessionStorage) para montar o tid da ClickBank.
+ */
+import { tracking } from '../site.config';
+const { ga4Id, googleAdsId } = tracking;
+const gtagId = ga4Id || googleAdsId;
+---
+{gtagId && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`}></script>
+    <script is:inline define:vars={{ ga4Id, googleAdsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      if (ga4Id) gtag('config', ga4Id);
+      if (googleAdsId) gtag('config', googleAdsId);
+    </script>
+  </>
+)}
+<script is:inline defer src="/_vercel/insights/script.js"></script>
+<script is:inline>
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      var keys = ['tid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+      var saved = JSON.parse(sessionStorage.getItem('thn_attr') || '{}');
+      var changed = false;
+      keys.forEach(function (k) { if (p.get(k)) { saved[k] = p.get(k); changed = true; } });
+      if (changed) sessionStorage.setItem('thn_attr', JSON.stringify(saved));
+    } catch (e) { /* storage bloqueado: segue sem atribuição */ }
+  })();
+</script>

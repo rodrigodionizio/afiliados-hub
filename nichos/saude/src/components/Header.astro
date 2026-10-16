@@ -1,0 +1,24 @@
+---
+import { site } from '../site.config';
+---
+<header class="site-header ui">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14303A"/><path d="M9 8h11a3 3 0 0 1 3 3v13H12a3 3 0 0 1-3-3z" fill="#FAFBF8"/><path d="M12 13h8M12 17h8M12 21h5" stroke="#2F8F83" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>{site.name}</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="/about">About</a>
+      <a href="/editorial-policy">How we review</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.75rem; flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+  nav { display: flex; gap: 1.25rem; font-size: 0.95rem; }
+  nav a { color: var(--graphite); text-decoration: none; }
+  nav a:hover { color: var(--ink); text-decoration: underline; }
+</style>

@@ -1,0 +1,33 @@
+---
+/** Nota de margem: no desktop fica na coluna lateral; no celular aparece no fluxo do texto. */
+interface Props { title: string; }
+const { title } = Astro.props;
+---
+<aside class="margin-note ui">
+  <p class="mn-title">{title}</p>
+  <div class="mn-body"><slot /></div>
+</aside>
+
+<style>
+  .margin-note {
+    background: var(--mint);
+    border-left: 3px solid var(--seaglass);
+    padding: 0.9rem 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    border-radius: 0 0.4rem 0.4rem 0;
+  }
+  .mn-title { font-weight: 700; margin: 0 0 0.35rem; }
+  .mn-body :global(p) { margin: 0 0 0.5rem; }
+  .mn-body :global(p:last-child) { margin: 0; }
+
+  @media (min-width: 64rem) {
+    .margin-note {
+      float: right;
+      clear: right;
+      width: 15rem;
+      margin: 0.25rem -18rem 1rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+/* The Healthy Notebook — tokens
+   Conceito: caderno de anotações de quem pesquisa saúde.
+   Elemento-assinatura: marca-texto (highlighter) nas frases-chave e notas de margem. */
+:root {
+  --ink: #14303a;          /* texto principal, azul-petróleo profundo */
+  --graphite: #4f6268;     /* texto secundário */
+  --enamel: #fafbf8;       /* fundo */
+  --paper: #ffffff;        /* superfícies */
+  --mint: #ddf1ea;         /* fundo de notas */
+  --seaglass: #22766c;     /* links e botões */
+  --seaglass-dark: #185a52;
+  --highlight: #f6e7a8;    /* marca-texto */
+  --rule: #d5e0dc;
+
+  --serif: 'Literata', Georgia, 'Times New Roman', serif;
+  --sans: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --measure: 40rem;
+  --gutter: 1rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--enamel);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  font-optical-sizing: auto;
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: var(--seaglass); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--seaglass-dark); text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--seaglass); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); }
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem); font-weight: 700; margin: 0 0 1rem; }
+h2 { font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem); font-weight: 650; margin: 3rem 0 0.75rem; }
+h3 { font-size: 1.25rem; font-weight: 650; margin: 2rem 0 0.5rem; }
+
+p, ul, ol { margin: 0 0 1.25rem; }
+li { margin-bottom: 0.4rem; }
+
+.wrap { max-width: 68rem; margin: 0 auto; padding: 0 var(--gutter); }
+.measure { max-width: var(--measure); }
+
+.ui { font-family: var(--sans); }
+
+/* Marca-texto: o traço amarelo de quem estuda com caneta na mão */
+mark, .hl {
+  background: linear-gradient(transparent 55%, var(--highlight) 55%, var(--highlight) 92%, transparent 92%);
+  color: inherit;
+  padding: 0 0.1em;
+}
+
+.skip {
+  position: absolute; left: -999px; top: 0.5rem;
+  background: var(--paper); padding: 0.5rem 1rem; font-family: var(--sans);
+}
+.skip:focus { left: 0.5rem; z-index: 10; }
+
+@media (min-width: 48rem) {
+  :root { --gutter: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

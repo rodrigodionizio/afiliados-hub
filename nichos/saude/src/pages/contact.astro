@@ -1,0 +1,10 @@
+---
+import Page from '../layouts/Page.astro';
+import { site } from '../site.config';
+---
+<Page title="Contact" description={`How to reach the ${site.name} team.`}>
+  <p>Email us at <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. We read every message and usually reply within two business days.</p>
+  <p>If you spot a factual error in an article, please include the page address and what needs fixing. We correct mistakes promptly and note significant corrections on the page.</p>
+  <h2>Orders and product support</h2>
+  <p>We don't sell products ourselves, so we can't access or change orders. For order questions or refunds, contact the retailer listed on the official product website. For products sold through ClickBank, you can reach ClickBank customer support at <a href="https://www.clkbank.com/" rel="noopener">clkbank.com</a>.</p>
+</Page>
