@@ -1,0 +1,39 @@
+---
+/** Escala honesta de evidência: o que é bem estabelecido e o que ainda não é. */
+const rows = [
+  { claim: 'The mouth has its own microbiome, and its balance matters', level: 4, label: 'Well established' },
+  { claim: 'Oral probiotics as an add-on to regular gum care', level: 2, label: 'Promising, results vary by strain' },
+  { claim: 'This exact product, tested in a published trial', level: 0, label: 'No published trial found' },
+];
+---
+<figure class="evidence">
+  <ul class="ui">
+    {rows.map((r) => (
+      <li>
+        <span class="claim">{r.claim}</span>
+        <span class="scale" role="img" aria-label={`${r.level} of 4: ${r.label}`}>
+          {[0, 1, 2, 3].map((i) => <span class:list={['dot', { on: i < r.level }]}></span>)}
+        </span>
+        <span class="lvl">{r.label}</span>
+      </li>
+    ))}
+  </ul>
+  <figcaption class="ui">Our reading of the evidence, from the sources listed at the end of this article.</figcaption>
+</figure>
+
+<style>
+  .evidence { margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 0.75rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--rule); font-size: 0.98rem; line-height: 1.4; }
+  li:last-child { border-bottom: 0; }
+  .claim { grid-column: 1 / -1; font-weight: 700; }
+  .scale { display: inline-flex; gap: 0.3rem; align-items: center; }
+  .dot { width: 0.9rem; height: 0.9rem; border-radius: 50%; border: 2px solid var(--seaglass); }
+  .dot.on { background: var(--seaglass); }
+  .lvl { color: var(--graphite); font-size: 0.92rem; }
+  figcaption { margin-top: 0.5rem; font-size: 0.85rem; color: var(--graphite); }
+  @media (min-width: 40rem) {
+    li { grid-template-columns: 1fr 5.5rem 13rem; align-items: center; }
+    .claim { grid-column: auto; }
+  }
+</style>

@@ -13,6 +13,18 @@ export type Product = {
   affiliateId: string;
   offerUrl: string;
   approved: boolean;
+  /**
+   * Imagens oficiais do produto. Hoje apontam para o servidor do vendedor.
+   * Para hospedar localmente: salve os arquivos em public/img/<slug>/ e troque
+   * as URLs por '/img/<slug>/arquivo.png'. Após a aprovação, prefira o kit de
+   * imagens que o vendedor envia aos afiliados.
+   */
+  images?: {
+    product?: string;
+    bundle3?: string;
+    bundle6?: string;
+    guarantee?: string;
+  };
 };
 
 export const products: Product[] = [
@@ -24,6 +36,12 @@ export const products: Product[] = [
     // TODO: substituir pelo hoplink oficial após aprovação (manter &tid={tid} no final)
     offerUrl: 'https://prodentim101.com/text.php?hop=quirinos84&tid={tid}',
     approved: false,
+    images: {
+      product: 'https://myprodentim101.com/statics/img/main-product-img.png',
+      bundle3: 'https://prodentim101.com/statics/img/prodentim3-bottle.png',
+      bundle6: 'https://prodentim101.com/statics/img/fe_6_bottle_mob.png',
+      guarantee: 'https://prodentim101.com/statics/img/guarantee_badge.png',
+    },
   },
 ];
 

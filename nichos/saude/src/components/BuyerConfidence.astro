@@ -1,0 +1,50 @@
+---
+/**
+ * "Antes de comprar": o que o leitor deve ver na página oficial para ter certeza
+ * de que está no lugar certo. Só fatos publicados na página de vendas.
+ */
+import ProductImage from './ProductImage.astro';
+import { getProduct } from '../data/products';
+interface Props { slug: string; }
+const product = getProduct(Astro.props.slug)!;
+
+const checks = [
+  { title: 'Buy from the official website', text: `${product.name} is not sold on Amazon, eBay or in stores. Listings elsewhere may not be genuine and are not covered by the guarantee.` },
+  { title: 'Checkout is handled by ClickBank', text: 'ClickBank is the retailer of record, so your receipt comes from ClickBank and order questions go to ClickBank support.' },
+  { title: '60 days to change your mind', text: 'The official site promises a full refund if you write to the company within 60 days. Keep your receipt.' },
+  { title: 'Know the shipping time', text: 'US orders ship in about 5 to 7 business days, per the official shipping policy.' },
+];
+---
+<section class="trust" aria-labelledby="trust-title">
+  <div class="head">
+    <div class="badge">
+      <ProductImage src={product.images?.guarantee} alt="60-day money-back guarantee badge from the official website" width={240} height={240} />
+    </div>
+    <div>
+      <h2 id="trust-title">Before you buy: how to know it's the real thing</h2>
+      <p class="ui lede">Four things to confirm on the order page, so you know exactly what you are paying for.</p>
+    </div>
+  </div>
+  <ul class="ui">
+    {checks.map((c) => (
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#22766c" /><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <span><strong>{c.title}</strong>{c.text}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .trust { margin: 2.5rem 0; padding: 1.5rem; background: var(--mint); border-radius: 0.75rem; }
+  .head { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+  .badge :global(img) { max-width: 5.5rem; }
+  .badge :global(.fallback) { width: 4rem; }
+  h2 { margin: 0 0 0.25rem; font-size: 1.4rem; }
+  .lede { margin: 0; color: var(--graphite); font-size: 0.95rem; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  li { display: grid; grid-template-columns: 1.5rem 1fr; gap: 0.75rem; font-size: 0.98rem; line-height: 1.45; }
+  li svg { width: 1.5rem; height: 1.5rem; margin-top: 0.1rem; }
+  li strong { display: block; }
+  @media (min-width: 48rem) { ul { grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; } }
+</style>

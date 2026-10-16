@@ -1,0 +1,48 @@
+---
+/**
+ * Duas comunidades bacterianas lado a lado: em equilíbrio e fora de equilíbrio.
+ * Ilustrativo, sem números reais.
+ */
+function seeded(seed: number) {
+  let s = seed;
+  return () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+}
+function community(cx: number, goodShare: number, seed: number) {
+  const rnd = seeded(seed);
+  const out: { x: number; y: number; r: number; good: boolean }[] = [];
+  const n = 42;
+  for (let i = 0; i < n; i++) {
+    const a = rnd() * Math.PI * 2;
+    const d = Math.sqrt(rnd()) * 112;
+    out.push({ x: cx + Math.cos(a) * d, y: 150 + Math.sin(a) * d, r: rnd() * 180, good: i < n * goodShare });
+  }
+  return out;
+}
+const panels = [
+  { cx: 190, share: 0.82, seed: 11, title: 'In balance', note: 'Helpful species dominate' },
+  { cx: 570, share: 0.38, seed: 23, title: 'Out of balance', note: 'Less helpful species take over' },
+];
+---
+<svg viewBox="0 0 760 400" role="img" aria-labelledby="bal-title bal-desc" class="illus">
+  <title id="bal-title">A balanced and an unbalanced oral community</title>
+  <desc id="bal-desc">Two circles of bacteria. On the left, most are helpful species. On the right, less helpful species make up most of the community. A bar under each circle shows the mix.</desc>
+  {panels.map((p) => {
+    const bugs = community(p.cx, p.share, p.seed);
+    const barW = 240;
+    const goodW = barW * p.share;
+    return (
+      <g>
+        <circle cx={p.cx} cy="150" r="130" fill="#ffffff" stroke="#14303a" stroke-width="3" />
+        {bugs.map((b) =>
+          b.good
+            ? <rect x={b.x - 11} y={b.y - 5} width="22" height="10" rx="5" fill="#22766c" transform={`rotate(${b.r} ${b.x} ${b.y})`} />
+            : <circle cx={b.x} cy={b.y} r="7" fill="#d08a3c" stroke="#8a5420" stroke-width="1" />
+        )}
+        <rect x={p.cx - barW / 2} y="300" width={goodW - 1} height="16" rx="4" fill="#22766c" />
+        <rect x={p.cx - barW / 2 + goodW + 1} y="300" width={barW - goodW - 1} height="16" rx="4" fill="#d08a3c" />
+        <text x={p.cx} y="352" text-anchor="middle" font-size="26" font-weight="700" fill="#14303a">{p.title}</text>
+        <text x={p.cx} y="384" text-anchor="middle" font-size="20" fill="#4f6268">{p.note}</text>
+      </g>
+    );
+  })}
+</svg>

@@ -1,0 +1,54 @@
+---
+/**
+ * Pacotes com foto oficial + barra do preço por frasco (uma série, rótulo direto).
+ * Valores conferidos na página oficial em outubro de 2026.
+ */
+import ProductImage from './ProductImage.astro';
+import { getProduct } from '../data/products';
+interface Props { slug: string; }
+const product = getProduct(Astro.props.slug)!;
+
+const max = 79;
+const bundles = [
+  { bottles: 2, per: 79, shipping: 'plus $9.99 US shipping', img: product.images?.product as string | undefined, note: '' },
+  { bottles: 3, per: 69, shipping: 'free US shipping', img: product.images?.bundle3, note: '' },
+  { bottles: 6, per: 49, shipping: 'free US shipping', img: product.images?.bundle6, note: 'Includes three digital bonus guides' },
+];
+---
+<figure class="bundles">
+  <div class="cards ui">
+    {bundles.map((b) => (
+      <div class="card">
+        <div class="pic">
+          {b.img
+            ? <ProductImage src={b.img} alt={`${b.bottles}-bottle ${product.name} bundle, official photo`} width={400} height={300} />
+            : <ProductImage alt={`${b.bottles}-bottle bundle`} width={400} height={300} />}
+        </div>
+        <p class="name">{b.bottles} bottles</p>
+        <div class="bar" title={`$${b.per} per bottle`}>
+          <span style={`width:${(b.per / max) * 100}%`}></span>
+        </div>
+        <p class="per"><strong>${b.per}</strong> per bottle</p>
+        <p class="total">${b.per * b.bottles} total, {b.shipping}</p>
+        {b.note && <p class="note">{b.note}</p>}
+      </div>
+    ))}
+  </div>
+  <figcaption class="ui">Price per bottle on the official website, checked October 2026. The bar length shows price per bottle; shorter is cheaper. Prices can change, so confirm on the official site.</figcaption>
+</figure>
+
+<style>
+  .bundles { margin: 1.5rem 0 2rem; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 0.6rem; padding: 1rem; }
+  .pic { background: var(--mint); border-radius: 0.4rem; padding: 0.5rem; height: 9rem; display: grid; place-items: center; overflow: hidden; }
+  .pic :global(img) { max-height: 8rem; width: auto; }
+  .pic :global(.fallback) { width: 5rem; }
+  .name { font-weight: 700; font-size: 1.1rem; margin: 0.85rem 0 0.5rem; }
+  .bar { height: 0.75rem; background: var(--enamel); border-radius: 4px; overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--seaglass); border-radius: 0 4px 4px 0; }
+  .per { margin: 0.5rem 0 0.15rem; font-size: 1.05rem; }
+  .total, .note { margin: 0; font-size: 0.9rem; color: var(--graphite); line-height: 1.4; }
+  figcaption { margin-top: 0.75rem; font-size: 0.85rem; color: var(--graphite); }
+  @media (min-width: 44rem) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

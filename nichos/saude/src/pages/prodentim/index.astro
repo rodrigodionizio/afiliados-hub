@@ -2,6 +2,14 @@
 import Article from '../../layouts/Article.astro';
 import OfferButton from '../../components/OfferButton.astro';
 import MarginNote from '../../components/MarginNote.astro';
+import ProductSpotlight from '../../components/ProductSpotlight.astro';
+import PriceBundles from '../../components/PriceBundles.astro';
+import EvidenceScale from '../../components/EvidenceScale.astro';
+import BuyerConfidence from '../../components/BuyerConfidence.astro';
+import ToothCrossSection from '../../components/illustrations/ToothCrossSection.astro';
+import BalanceDiagram from '../../components/illustrations/BalanceDiagram.astro';
+import FormulaAnatomy from '../../components/illustrations/FormulaAnatomy.astro';
+import ChewableJourney from '../../components/illustrations/ChewableJourney.astro';
 
 const slug = 'prodentim';
 const faqs = [
@@ -56,6 +64,11 @@ const faqSchema = {
     better. That advice is right. It is also, researchers now suggest, not the whole picture.
   </p>
 
+  <figure class="plate">
+    <ToothCrossSection />
+    <figcaption class="ui">Where the action is: the thin film of bacteria along the gumline. Schematic illustration, not to scale.</figcaption>
+  </figure>
+
   <h2>Your mouth is an ecosystem, not a battlefield</h2>
 
   <MarginNote title="In one sentence">
@@ -72,6 +85,11 @@ const faqSchema = {
     That shift is why "oral probiotics" exist: supplements that deliver beneficial bacteria directly to the mouth,
     usually as a lozenge or chewable that dissolves slowly instead of being swallowed.
   </p>
+
+  <figure class="plate">
+    <BalanceDiagram />
+    <figcaption class="ui">The idea behind oral probiotics in one picture: support the helpful side of the mix. Illustration only; real communities hold hundreds of species.</figcaption>
+  </figure>
 
   <h2>What the research says about oral probiotics</h2>
   <p>
@@ -93,6 +111,8 @@ const faqSchema = {
     strain called HN019, which is not the same <em>B. lactis</em> strain found in ProDentim.
   </p>
 
+  <EvidenceScale />
+
   <h2>What ProDentim is</h2>
   <p>
     ProDentim is a chewable oral probiotic sold through its official website. The company says each tablet
@@ -100,30 +120,21 @@ const faqSchema = {
     ingredients.
   </p>
 
-  <h3>The probiotic strains</h3>
-  <ul>
-    <li><strong>Lactobacillus paracasei</strong>, which the company includes to support gum health.</li>
-    <li><strong>Bifidobacterium lactis BL-04</strong>, included to support a balanced oral environment and normal immune function.</li>
-    <li><strong>Lactobacillus reuteri</strong>, one of the more widely studied probiotic species, included to support a healthy mouth.</li>
-  </ul>
+  <ProductSpotlight slug={slug} />
 
-  <h3>The supporting ingredients</h3>
-  <ul>
-    <li><strong>Inulin</strong>, a plant fiber that serves as food for beneficial bacteria.</li>
-    <li><strong>Malic acid</strong>, a fruit acid found in strawberries.</li>
-    <li><strong>Tricalcium phosphate</strong>, a common source of calcium and phosphate.</li>
-    <li><strong>Peppermint</strong>, for flavor and a fresh-feeling mouth.</li>
-  </ul>
+  <h3>What's inside each tablet</h3>
+  <FormulaAnatomy />
 
   <p>
-    The company describes the formula as non-GMO, gluten-free and free of stimulants. You chew one tablet in the
-    morning and let it dissolve, which gives the cultures time in your mouth before you swallow.
+    The company describes the formula as non-GMO, gluten-free and free of stimulants. Because you chew the
+    tablet and let it dissolve, the cultures spend time in your mouth before you swallow, which is the point of
+    the chewable format.
   </p>
 
-  <div class="cta-block">
-    <p class="cta-lead ui">Want to see the full ingredient list, current pricing and the guarantee?</p>
-    <OfferButton slug={slug} label="Check the official ProDentim website" position="mid" />
-  </div>
+  <h3>How you take it</h3>
+  <ChewableJourney />
+
+
 
   <h2>Price and guarantee</h2>
   <p>
@@ -131,19 +142,7 @@ const faqSchema = {
     official website when we last checked; they can change, so confirm on the site.
   </p>
 
-  <div class="table-wrap">
-    <table class="ui">
-      <caption>Bundle prices on the official website, checked October 2026</caption>
-      <thead>
-        <tr><th scope="col">Bundle</th><th scope="col">Price per bottle</th><th scope="col">US shipping</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>2 bottles</td><td>$79</td><td>$9.99</td></tr>
-        <tr><td>3 bottles</td><td>$69</td><td>Free</td></tr>
-        <tr><td>6 bottles, with digital bonus guides</td><td>$49</td><td>Free</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <PriceBundles slug={slug} />
 
   <p>
     Every order is covered by a <mark>60-day money-back guarantee</mark>, according to the official site. Orders are
@@ -183,6 +182,8 @@ const faqSchema = {
     gums or loose teeth, <mark>book a dental visit first</mark>; those are signs that need professional care.
   </p>
 
+  <BuyerConfidence slug={slug} />
+
   <h2>The bottom line</h2>
   <p>
     The idea behind ProDentim is sound: support the good bacteria in your mouth instead of only scrubbing at
@@ -215,6 +216,11 @@ const faqSchema = {
 </Article>
 
 <style>
+  .plate { margin: 2rem 0; padding: 1.25rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 0.75rem; }
+  .plate :global(.illus) { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  .plate figcaption { margin-top: 0.75rem; font-size: 0.85rem; color: var(--graphite); line-height: 1.45; }
+  @media (max-width: 30rem) { .plate { margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); border-radius: 0; border-left: 0; border-right: 0; padding: 1rem 0.5rem; } }
+
   sup a { text-decoration: none; font-family: var(--sans); font-size: 0.75em; padding: 0 0.1em; }
 
   .cta-block {
@@ -224,15 +230,8 @@ const faqSchema = {
     border: 1px solid var(--rule);
     border-radius: 0.6rem;
   }
-  .cta-lead { margin: 0 0 1rem; font-size: 1rem; }
   .cta-block.final { text-align: center; }
   .cta-small { margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--graphite); }
-
-  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.98rem; background: var(--paper); }
-  caption { text-align: left; font-size: 0.85rem; color: var(--graphite); padding-bottom: 0.5rem; }
-  th, td { text-align: left; padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--rule); }
-  th { font-weight: 700; background: var(--mint); }
 
   .proscons { display: grid; gap: 0 2rem; }
   .proscons h3 { margin-top: 1rem; }

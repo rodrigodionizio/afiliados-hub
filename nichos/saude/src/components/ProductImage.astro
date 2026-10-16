@@ -1,0 +1,36 @@
+---
+/**
+ * Imagem oficial do produto com plano B: se a imagem não carregar,
+ * mostra uma ilustração neutra de frasco em vez de um ícone quebrado.
+ */
+interface Props { src?: string; alt: string; width?: number; height?: number; eager?: boolean; }
+const { src, alt, width = 600, height = 600, eager = false } = Astro.props;
+---
+<div class:list={['pimg', { 'img-missing': !src }]} data-imgwrap>
+  {src && (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      referrerpolicy="no-referrer"
+      onerror="this.closest('[data-imgwrap]').classList.add('img-missing')"
+    />
+  )}
+  <svg class="fallback" viewBox="0 0 200 200" role="img" aria-label={alt}>
+    <rect x="62" y="34" width="76" height="22" rx="4" fill="#14303a" />
+    <rect x="52" y="52" width="96" height="124" rx="14" fill="#ffffff" stroke="#14303a" stroke-width="3" />
+    <rect x="52" y="92" width="96" height="44" fill="#ddf1ea" />
+    <circle cx="100" cy="114" r="12" fill="#22766c" />
+  </svg>
+</div>
+
+<style>
+  .pimg { display: grid; place-items: center; }
+  .pimg img { width: 100%; height: auto; object-fit: contain; }
+  .fallback { display: none; width: 60%; max-width: 12rem; }
+  .img-missing img { display: none; }
+  .img-missing .fallback { display: block; }
+</style>

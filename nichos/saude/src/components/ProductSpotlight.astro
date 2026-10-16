@@ -1,0 +1,60 @@
+---
+/** Bloco "o que você está comprando": foto oficial + ficha do produto + botão. */
+import ProductImage from './ProductImage.astro';
+import OfferButton from './OfferButton.astro';
+import { getProduct } from '../data/products';
+
+interface Props { slug: string; }
+const { slug } = Astro.props;
+const product = getProduct(slug)!;
+
+const facts = [
+  ['Format', 'Chewable tablet that dissolves in the mouth'],
+  ['How to take', 'One tablet each morning, chewed slowly'],
+  ['Inside', '3.5 billion probiotic cultures per tablet, according to the company, plus inulin, malic acid, tricalcium phosphate and peppermint'],
+  ['Free of', 'GMOs, gluten and stimulants, according to the label claims'],
+  ['Where to buy', 'Official website only, with checkout by ClickBank'],
+  ['Guarantee', '60-day money-back guarantee'],
+];
+---
+<section class="spotlight" aria-labelledby="spotlight-title">
+  <div class="photo">
+    <ProductImage src={product.images?.product} alt={`${product.name} bottle, official product photo`} eager />
+    <p class="credit ui">Official product photo</p>
+  </div>
+  <div class="facts ui">
+    <h2 id="spotlight-title">What you would be buying</h2>
+    <dl>
+      {facts.map(([k, v]) => (
+        <div class="row"><dt>{k}</dt><dd>{v}</dd></div>
+      ))}
+    </dl>
+    <OfferButton slug={slug} label="See it on the official website" position="spotlight" />
+  </div>
+</section>
+
+<style>
+  .spotlight {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0.75rem;
+  }
+  .photo { background: var(--mint); border-radius: 0.5rem; padding: 1rem; }
+  .photo :global(img) { max-height: 22rem; }
+  .credit { margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--graphite); text-align: center; }
+  h2 { margin: 0 0 1rem; font-size: 1.5rem; }
+  dl { margin: 0 0 1.5rem; }
+  .row { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); font-size: 0.98rem; line-height: 1.45; }
+  dt { font-weight: 700; }
+  dd { margin: 0; color: var(--ink); }
+  @media (min-width: 52rem) {
+    .spotlight { grid-template-columns: 0.9fr 1.1fr; align-items: center; }
+  }
+  @media (max-width: 26rem) {
+    .row { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>
