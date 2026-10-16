@@ -9,6 +9,8 @@ const site = process.env.SITE_URL || 'https://healthy-notebook.vercel.app';
 export default defineConfig({
   site,
   trailingSlash: 'ignore',
+  // mantém os espaços entre texto e tags em linha (<em>, <mark>, <a>)
+  compressHTML: false,
   integrations: [
     sitemap({
       // páginas de redirecionamento não entram no sitemap

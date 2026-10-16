@@ -9,9 +9,9 @@ interface Props { slug: string; }
 const product = getProduct(Astro.props.slug)!;
 
 const checks = [
-  { title: 'Buy from the official website', text: `${product.name} is not sold on Amazon, eBay or in stores. Listings elsewhere may not be genuine and are not covered by the guarantee.` },
+  { title: 'Buy from the official website', text: `The company says ${product.name} is not sold on Amazon, eBay or in stores. Listings elsewhere may not be genuine and are not covered by the guarantee.` },
   { title: 'Checkout is handled by ClickBank', text: 'ClickBank is the retailer of record, so your receipt comes from ClickBank and order questions go to ClickBank support.' },
-  { title: '60 days to change your mind', text: 'The official site promises a full refund if you write to the company within 60 days. Keep your receipt.' },
+  { title: '60 days to change your mind', text: 'The official site offers a full refund if you contact the company within 60 days. Keep your receipt.' },
   { title: 'Know the shipping time', text: 'US orders ship in about 5 to 7 business days, per the official shipping policy.' },
 ];
 ---

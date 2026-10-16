@@ -4,17 +4,19 @@ import { site } from '../site.config';
 
 interface Props {
   title: string;
+  /** título curto para a aba/Google (até ~60 caracteres); o H1 continua sendo `title` */
+  seoTitle?: string;
   description: string;
   dek: string;
   updated: string; // ISO date
   readingMinutes: number;
 }
-const { title, description, dek, updated, readingMinutes } = Astro.props;
+const { title, seoTitle, description, dek, updated, readingMinutes } = Astro.props;
 const updatedLabel = new Date(updated + 'T12:00:00Z').toLocaleDateString('en-US', {
   month: 'long', day: 'numeric', year: 'numeric',
 });
 ---
-<Base title={title} description={description}>
+<Base title={seoTitle ?? title} description={description}>
   <article class="wrap article">
     <header class="article-head">
       <p class="disclosure ui">

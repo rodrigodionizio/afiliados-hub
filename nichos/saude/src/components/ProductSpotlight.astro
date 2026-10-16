@@ -11,16 +11,16 @@ const product = getProduct(slug)!;
 const facts = [
   ['Format', 'Chewable tablet that dissolves in the mouth'],
   ['How to take', 'One tablet each morning, chewed slowly'],
-  ['Inside', '3.5 billion probiotic cultures per tablet, according to the company, plus inulin, malic acid, tricalcium phosphate and peppermint'],
-  ['Free of', 'GMOs, gluten and stimulants, according to the label claims'],
-  ['Where to buy', 'Official website only, with checkout by ClickBank'],
+  ['Inside', 'A blend of 3.5 billion probiotics from three strains, according to the company, plus inulin, malic acid, tricalcium phosphate and peppermint'],
+  ['Free of', 'GMOs, gluten and stimulants, according to the company'],
+  ['Where to buy', 'Official website only, according to the company; checkout by ClickBank'],
   ['Guarantee', '60-day money-back guarantee'],
 ];
 ---
 <section class="spotlight" aria-labelledby="spotlight-title">
   <div class="photo">
     <ProductImage src={product.images?.product} alt={`${product.name} bottle, official product photo`} eager />
-    <p class="credit ui">Official product photo</p>
+    <p class="credit ui">Product photo from the official website</p>
   </div>
   <div class="facts ui">
     <h2 id="spotlight-title">What you would be buying</h2>
@@ -45,6 +45,7 @@ const facts = [
   }
   .photo { background: var(--mint); border-radius: 0.5rem; padding: 1rem; }
   .photo :global(img) { max-height: 22rem; }
+  .photo:has(.img-missing) .credit { display: none; }
   .credit { margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--graphite); text-align: center; }
   h2 { margin: 0 0 1rem; font-size: 1.5rem; }
   dl { margin: 0 0 1.5rem; }

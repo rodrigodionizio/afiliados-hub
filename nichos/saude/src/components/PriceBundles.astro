@@ -21,7 +21,7 @@ const bundles = [
       <div class="card">
         <div class="pic">
           {b.img
-            ? <ProductImage src={b.img} alt={`${b.bottles}-bottle ${product.name} bundle, official photo`} width={400} height={300} />
+            ? <ProductImage src={b.img} alt={b.bottles === 2 ? `${product.name} product photo from the official website` : `${b.bottles}-bottle ${product.name} bundle, photo from the official website`} width={400} height={300} />
             : <ProductImage alt={`${b.bottles}-bottle bundle`} width={400} height={300} />}
         </div>
         <p class="name">{b.bottles} bottles</p>

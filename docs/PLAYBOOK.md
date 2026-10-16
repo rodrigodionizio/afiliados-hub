@@ -33,6 +33,7 @@ Quebrar qualquer uma delas derruba conta de anúncio, corta a afiliação ou exp
 1. Ler página de vendas + página de afiliados do vendedor.
 2. Pedir afiliação (com a pré-sell já no ar).
 3. Escrever a pré-sell (ver `NOVO-PRODUTO.md`).
-4. Revisar conformidade (lista acima).
+4. Revisar conformidade (lista acima) **e rodar `/marketing:brand-review`** contra `docs/BRAND-VOICE.md`.
+   Todo achado High ou Medium é corrigido antes do push. Vale para pré-sell, anúncio e criativo.
 5. Subir campanha de teste.
 6. Analisar e decidir: escalar, ajustar ou cortar.
